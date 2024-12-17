@@ -28,4 +28,4 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 Feel free to improve the code, suggest changes, or fix bugs by submitting pull requests.
 
 ## Acknowledgements
-This project was developed to practice Python and understand the logic behind automatic receipt generation for a fictional furniture store.
+This project was developed to practice Python and to understand the logic behind automatic receipt generation for a fictional furniture store.
