@@ -10,7 +10,7 @@ This project creates a simple receipt generation system for a fictional furnitur
 
 ## How to Use
 1. Clone this repository to your local machine:
-    - git clone https://github.com/YourUsername/furniture-store-receipt-generator.git
+    - git clone https://github.com/rraffaaa/furniture-store-receipt-generator.git
 
 2. Run the code in your Python environment:
     - python receipt_generator.py
