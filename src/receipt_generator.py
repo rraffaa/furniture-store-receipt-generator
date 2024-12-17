@@ -1,3 +1,21 @@
+def calculate_total_and_itemization(prices, descriptions):
+    try:
+        # Check if all prices are valid numbers (integers or floats)
+        if not all(isinstance(price, (int, float)) for price in prices):
+            raise ValueError("All prices must be valid numbers.")
+
+        # Check if all descriptions are non-empty strings
+        if not all(isinstance(description, str) and description.strip() != "" for description in descriptions):
+            raise ValueError("All descriptions must be non-empty strings.")
+        
+        total = sum(prices)  # Calculate the total of the purchases
+        itemization = " ".join(descriptions)  # Join the descriptions into a single string
+        return total, itemization
+
+    except ValueError as e:
+        print(f"Error: {e}")
+        return None, None  # Return default values in case of error
+
 # pieces
 cozy_couch_description = """Cozy Couch. Plush velvet fabric over a sturdy oak frame. 34 inches high x 60 inches wide x 35 inches deep. Available in blue or grey."""
 modern_armchair_description = """Modern Armchair. Faux leather on pinewood. 30 inches high x 28 inches wide x 30 inches deep. Available in tan or charcoal."""
@@ -26,6 +44,7 @@ rug_two_price = 86.00
 
 # tax
 sales_tax = .075
+
 # customers
 customer_one_total = cozy_couch_price + elegant_lamp_price
 customer_two_total = dining_table_price + wooden_desk_price + turquoise_sofa_price
@@ -58,15 +77,41 @@ customer_two_total += customer_two_tax
 customer_three_tax = customer_three_total * sales_tax
 customer_three_total += customer_three_tax
 
-# Display results
-print("Customer One Items: ")
-print(customer_one_itemization)
-print("Total: $", round(customer_one_total, 2))
+# Display results for Customer One
+customer_one_total, customer_one_itemization = calculate_total_and_itemization(
+    [cozy_couch_price, elegant_lamp_price], 
+    [cozy_couch_description, elegant_lamp_description]
+)
 
-print("\nCustomer Two Items: ")
-print(customer_two_itemization)
-print("Total: $", round(customer_two_total, 2))
+if customer_one_total is not None:
+    print("Customer One Items:")
+    print(customer_one_itemization)
+    print("Total: $", round(customer_one_total, 2))
+else:
+    print("There was an error processing Customer One.")
 
-print("\nCustomer Three Items: ")
-print(customer_three_itemization)
-print("Total: $", round(customer_three_total, 2))
+# Display results for Customer Two
+customer_two_total, customer_two_itemization = calculate_total_and_itemization(
+    [dining_table_price, wooden_desk_price, turquoise_sofa_price], 
+    [dining_table_description, wooden_desk_description, turquoise_sofa_description]
+)
+
+if customer_two_total is not None:
+    print("\nCustomer Two Items:")
+    print(customer_two_itemization)
+    print("Total: $", round(customer_two_total, 2))
+else:
+    print("There was an error processing Customer Two.")
+
+# Display results for Customer Three
+customer_three_total, customer_three_itemization = calculate_total_and_itemization(
+    [second_elegant_lamp_price, red_lamp_price, dark_wood_shelf_price, rug_one_price, rug_two_price], 
+    [second_elegant_lamp_description, red_lamp_description, dark_wood_shelf_description, rug_one_description, rug_two_description]
+)
+
+if customer_three_total is not None:
+    print("\nCustomer Three Items:")
+    print(customer_three_itemization)
+    print("Total: $", round(customer_three_total, 2))
+else:
+    print("There was an error processing Customer Three.")
